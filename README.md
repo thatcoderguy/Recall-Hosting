@@ -9,7 +9,7 @@ This project has 3 branches
 Recall-hosting-windows-service.  
 This is the service project, the service is what interfaces with the other services (e.g. Email, iis etc) to se setup accounts, host headers, DNS records etc...
 
-Interface-alpha
+Interface-alpha.
 This is an alpha build of the web interface which will be used by customers/staff to issue commands to the windows service.
 The interface also stores a copy of the configuration of all email accounts/DNS records/iis headers etc.. So that they don't have to be read from the services.
 
