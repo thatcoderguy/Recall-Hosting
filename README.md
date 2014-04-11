@@ -29,3 +29,9 @@ The inteface can then be setup.
 TO DO
 =====================
 
+A real web interface needs writing, with some branding features.
+
+The windows service still needs to support:
+> IIS header create/delete/update
+> DNS record creat/delete/update
+
