@@ -1,0 +1,3061 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:ns1="urn:APIServerIntf" name="ISOAPServerservice" targetNamespace="http://tempuri.org/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xs:schema xmlns="urn:APIServerIntf" targetNamespace="urn:APIServerIntf">
+      <xs:complexType name="TDomainInstall">
+        <xs:sequence>
+          <xs:element name="DomainName" type="xs:string" />
+          <xs:element name="RegistrationType" type="ns1:TRegistrationType" />
+          <xs:element name="HostingType" type="ns1:THostingType" />
+          <xs:element name="RegistrantCustomerID" type="xs:string" />
+          <xs:element name="AdminCustomerID" type="xs:string" />
+          <xs:element name="TechnicalCustomerID" type="xs:string" />
+          <xs:element name="BillingCustomerID" type="xs:string" />
+          <xs:element name="RegistrationTerm" type="xs:int" />
+          <xs:element name="OSType" type="ns1:TOSType" />
+          <xs:element name="LoadBalancing" type="xs:boolean" />
+          <xs:element name="AddStandardProducts" type="xs:boolean" />
+          <xs:element name="WebForwardingType" type="ns1:TWebForwardingType" />
+          <xs:element name="WebForwardingDestination" type="xs:string" />
+          <xs:element name="WebForwardingBrowserCaption" type="xs:string" />
+          <xs:element name="AliasTo" type="xs:string" />
+          <xs:element name="PrimaryNameserver" type="xs:string" />
+          <xs:element name="SecondaryNameserver" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="TRegistrationType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="rtUnspecified" />
+          <xs:enumeration value="rtNone" />
+          <xs:enumeration value="rtNewRegistration" />
+          <xs:enumeration value="rtTransfer" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="THostingType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="htUnspecified" />
+          <xs:enumeration value="htNone" />
+          <xs:enumeration value="htWebsiteAndEmail" />
+          <xs:enumeration value="htEmailWithWebForwarding" />
+          <xs:enumeration value="htAlias" />
+          <xs:enumeration value="htParked" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="TOSType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="ostUnspecified" />
+          <xs:enumeration value="ostWindows2003" />
+          <xs:enumeration value="ostWindows2000" />
+          <xs:enumeration value="ostLinux" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="TWebForwardingType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="wfNone" />
+          <xs:enumeration value="wfNoFrames" />
+          <xs:enumeration value="wfFramed" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TDomain">
+        <xs:sequence>
+          <xs:element name="DomainName" type="xs:string" />
+          <xs:element name="DomainType" type="ns1:TDomainType" />
+          <xs:element name="AliasedTo" type="xs:string" />
+          <xs:element name="ParentDomain" type="xs:string" />
+          <xs:element name="HostingType" type="ns1:THostingType" />
+          <xs:element name="Scripting" type="xs:boolean" />
+          <xs:element name="IPAddress" type="xs:string" />
+          <xs:element name="WebForwardingType" type="ns1:TWebForwardingType" />
+          <xs:element name="WebForwardingDestination" type="xs:string" />
+          <xs:element name="WebForwardingBrowserCaption" type="xs:string" />
+          <xs:element name="DateAdded" type="xs:string" />
+          <xs:element name="RegistrationDate" type="xs:string" />
+          <xs:element name="RegistrationExpiry" type="xs:string" />
+          <xs:element name="CustomerControlEnabled" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="TDomainType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="dtHosting" />
+          <xs:enumeration value="dtRegistration" />
+          <xs:enumeration value="dtHostingAndRegistration" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TDomainOverviewList">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TDomainOverview[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TDomainOverview">
+        <xs:sequence>
+          <xs:element name="DomainName" type="xs:string" />
+          <xs:element name="DomainType" type="ns1:TDomainType" />
+          <xs:element name="HostingType" type="ns1:THostingType" />
+          <xs:element name="RegistrationExpiry" type="xs:string" />
+          <xs:element name="CustomerControlEnabled" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TDomainList">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TDomain[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TRegistrationTermList">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TRegistrationTerm[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TRegistrationTerm">
+        <xs:sequence>
+          <xs:element name="Term" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TMailboxInstall">
+        <xs:sequence>
+          <xs:element name="DomainName" type="xs:string" />
+          <xs:element name="DomainType" type="ns1:TDomainType" />
+          <xs:element name="MailboxType" type="ns1:TMailboxType" />
+          <xs:element name="MailboxName" type="xs:string" />
+          <xs:element name="DisplayName" type="xs:string" />
+          <xs:element name="Password" type="xs:string" />
+          <xs:element name="Target" type="xs:string" />
+          <xs:element name="BillingFrequency" type="ns1:TBillingFrequency" />
+          <xs:element name="GoodLinkEnabled" type="xs:boolean" />
+          <xs:element name="GoodLinkBillingFrequency" type="ns1:TBillingFrequency" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="TMailboxType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="mbtUnspecified" />
+          <xs:enumeration value="mbtStandard" />
+          <xs:enumeration value="mbtAdvanced" />
+          <xs:enumeration value="mbtExchange" />
+          <xs:enumeration value="mbtForwarder" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="TBillingFrequency">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="bfMonthly" />
+          <xs:enumeration value="bfAnnually" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TMailbox">
+        <xs:sequence>
+          <xs:element name="MailboxName" type="xs:string" />
+          <xs:element name="MailboxType" type="ns1:TMailboxType" />
+          <xs:element name="Target" type="xs:string" />
+          <xs:element name="SMSAlerts" type="xs:boolean" />
+          <xs:element name="SMSAlertsType" type="ns1:TSMSAlertType" />
+          <xs:element name="LicenseKey" type="xs:string" />
+          <xs:element name="GoodLinkEnabled" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="TSMSAlertType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="satUnspecified" />
+          <xs:enumeration value="satBasic" />
+          <xs:enumeration value="satAdvanced" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TMailboxList">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TMailbox[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TDefaultMailHandling">
+        <xs:sequence>
+          <xs:element name="DomainName" type="xs:string" />
+          <xs:element name="DomainType" type="ns1:TDomainType" />
+          <xs:element name="DefaultHandling" type="ns1:TMailHandlingType" />
+          <xs:element name="Target" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="TMailHandlingType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="mhtUnspecified" />
+          <xs:enumeration value="mhtBounce" />
+          <xs:enumeration value="mhtDelete" />
+          <xs:enumeration value="mhtForward" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TGoodLinkInstall">
+        <xs:sequence>
+          <xs:element name="DomainName" type="xs:string" />
+          <xs:element name="DomainType" type="ns1:TDomainType" />
+          <xs:element name="MailboxName" type="xs:string" />
+          <xs:element name="BillingFrequency" type="ns1:TBillingFrequency" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TCustomerInstall">
+        <xs:sequence>
+          <xs:element name="CompanyName" type="xs:string" />
+          <xs:element name="TradingName" type="xs:string" />
+          <xs:element name="Address1" type="xs:string" />
+          <xs:element name="Address2" type="xs:string" />
+          <xs:element name="Address3" type="xs:string" />
+          <xs:element name="City" type="xs:string" />
+          <xs:element name="County" type="xs:string" />
+          <xs:element name="CountryCode" type="xs:int" />
+          <xs:element name="PostalCode" type="xs:string" />
+          <xs:element name="Business" type="xs:string" />
+          <xs:element name="Notes" type="xs:string" />
+          <xs:element name="Title" type="xs:string" />
+          <xs:element name="Forename" type="xs:string" />
+          <xs:element name="Initials" type="xs:string" />
+          <xs:element name="Surname" type="xs:string" />
+          <xs:element name="PreferredName" type="xs:string" />
+          <xs:element name="Email" type="xs:string" />
+          <xs:element name="PhoneNumber" type="xs:string" />
+          <xs:element name="FaxNumber" type="xs:string" />
+          <xs:element name="MobileNumber" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TCustomer">
+        <xs:sequence>
+          <xs:element name="CustomerID" type="xs:string" />
+          <xs:element name="CompanyName" type="xs:string" />
+          <xs:element name="TradingName" type="xs:string" />
+          <xs:element name="Address1" type="xs:string" />
+          <xs:element name="Address2" type="xs:string" />
+          <xs:element name="Address3" type="xs:string" />
+          <xs:element name="City" type="xs:string" />
+          <xs:element name="County" type="xs:string" />
+          <xs:element name="CountryCode" type="xs:int" />
+          <xs:element name="PostalCode" type="xs:string" />
+          <xs:element name="Business" type="xs:string" />
+          <xs:element name="Notes" type="xs:string" />
+          <xs:element name="Title" type="xs:string" />
+          <xs:element name="Forename" type="xs:string" />
+          <xs:element name="Initials" type="xs:string" />
+          <xs:element name="Surname" type="xs:string" />
+          <xs:element name="PreferredName" type="xs:string" />
+          <xs:element name="Email" type="xs:string" />
+          <xs:element name="PhoneCountryCode" type="xs:string" />
+          <xs:element name="PhoneAreaCode" type="xs:string" />
+          <xs:element name="PhoneNumber" type="xs:string" />
+          <xs:element name="PhoneExtension" type="xs:string" />
+          <xs:element name="FaxCountryCode" type="xs:string" />
+          <xs:element name="FaxAreaCode" type="xs:string" />
+          <xs:element name="FaxNumber" type="xs:string" />
+          <xs:element name="MobileNumber" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TCustomerOverviewList">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TCustomerOverview[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TCustomerOverview">
+        <xs:sequence>
+          <xs:element name="CustomerID" type="xs:string" />
+          <xs:element name="CompanyName" type="xs:string" />
+          <xs:element name="ContactName" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TCustomerList">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TCustomer[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TCustomFTPAccountInstall">
+        <xs:sequence>
+          <xs:element name="Username" type="xs:string" />
+          <xs:element name="Password" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TFTPAccount">
+        <xs:sequence>
+          <xs:element name="FTPAccountID" type="xs:string" />
+          <xs:element name="Username" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TCustomFTPAccountFolderInstall">
+        <xs:sequence>
+          <xs:element name="FTPAccountID" type="xs:string" />
+          <xs:element name="DomainName" type="xs:string" />
+          <xs:element name="FolderName" type="xs:string" />
+          <xs:element name="ReadPermission" type="xs:boolean" />
+          <xs:element name="WritePermission" type="xs:boolean" />
+          <xs:element name="ExecutePermission" type="xs:boolean" />
+          <xs:element name="DeletePermission" type="xs:boolean" />
+          <xs:element name="ListPermission" type="xs:boolean" />
+          <xs:element name="MakePermission" type="xs:boolean" />
+          <xs:element name="RemovePermission" type="xs:boolean" />
+          <xs:element name="InheritPermission" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TFTPFolder">
+        <xs:sequence>
+          <xs:element name="FTPFolderID" type="xs:string" />
+          <xs:element name="FolderName" type="xs:string" />
+          <xs:element name="AccessRights" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TFTPAccountList">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TFTPAccount[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TFTPFolderList">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TFTPFolder[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TDatabaseInstall">
+        <xs:sequence>
+          <xs:element name="DatabaseName" type="xs:string" />
+          <xs:element name="Username" type="xs:string" />
+          <xs:element name="Password" type="xs:string" />
+          <xs:element name="DatabaseType" type="ns1:TDatabaseType" />
+          <xs:element name="DatabaseSize" type="ns1:TDatabaseSize" />
+          <xs:element name="BillingFrequency" type="ns1:TBillingFrequency" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="TDatabaseType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="dtUnspecified" />
+          <xs:enumeration value="dtMSSQL" />
+          <xs:enumeration value="dtMYSQL" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="TDatabaseSize">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="dsUnspecified" />
+          <xs:enumeration value="ds150" />
+          <xs:enumeration value="ds300" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TDatabase">
+        <xs:sequence>
+          <xs:element name="DatabaseName" type="xs:string" />
+          <xs:element name="DatabaseType" type="ns1:TDatabaseType" />
+          <xs:element name="ServerName" type="xs:string" />
+          <xs:element name="IPAddress" type="xs:string" />
+          <xs:element name="Status" type="xs:string" />
+          <xs:element name="DatabaseSize" type="ns1:TDatabaseSize" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TDatabaseUserInstall">
+        <xs:sequence>
+          <xs:element name="DatabaseName" type="xs:string" />
+          <xs:element name="DatabaseType" type="ns1:TDatabaseType" />
+          <xs:element name="Username" type="xs:string" />
+          <xs:element name="Password" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TDatabaseUser">
+        <xs:sequence>
+          <xs:element name="Username" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TDatabaseList">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TDatabase[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TDatabaseUserList">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TDatabaseUser[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TODBCDataSourceInstall">
+        <xs:sequence>
+          <xs:element name="DomainName" type="xs:string" />
+          <xs:element name="DomainType" type="ns1:TDomainType" />
+          <xs:element name="DSN" type="xs:string" />
+          <xs:element name="DataSourceType" type="ns1:TODBCDataSourceType" />
+          <xs:element name="DatabasePath" type="xs:string" />
+          <xs:element name="DatabaseVersion" type="ns1:TODBCDatabaseVersion" />
+          <xs:element name="Database" type="xs:string" />
+          <xs:element name="Username" type="xs:string" />
+          <xs:element name="Password" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="TODBCDataSourceType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="otUnspecified" />
+          <xs:enumeration value="otAccess" />
+          <xs:enumeration value="otDBase" />
+          <xs:enumeration value="otExcel" />
+          <xs:enumeration value="otParadox" />
+          <xs:enumeration value="otText" />
+          <xs:enumeration value="otVisualFoxPro" />
+          <xs:enumeration value="otMSSQL" />
+          <xs:enumeration value="otMySQL" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="TODBCDatabaseVersion">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="dvUnspecified" />
+          <xs:enumeration value="dvExcel3" />
+          <xs:enumeration value="dvExcel4" />
+          <xs:enumeration value="dvExcel5" />
+          <xs:enumeration value="dvExcel8" />
+          <xs:enumeration value="dvParadox3" />
+          <xs:enumeration value="dvParadox4" />
+          <xs:enumeration value="dvParadox5" />
+          <xs:enumeration value="dvFoxProFile" />
+          <xs:enumeration value="dvFoxProDirectory" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TODBCDataSource">
+        <xs:sequence>
+          <xs:element name="DataSourceID" type="xs:string" />
+          <xs:element name="DSN" type="xs:string" />
+          <xs:element name="DataSourceType" type="ns1:TODBCDataSourceType" />
+          <xs:element name="DatabasePath" type="xs:string" />
+          <xs:element name="DatabaseVersion" type="ns1:TODBCDatabaseVersion" />
+          <xs:element name="Database" type="xs:string" />
+          <xs:element name="Username" type="xs:string" />
+          <xs:element name="Password" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TODBCDataSourceList">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TODBCDataSource[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TADSLInstall">
+        <xs:sequence>
+          <xs:element name="LineNumber" type="xs:string" />
+          <xs:element name="ProductType" type="ns1:TADSLProductType" />
+          <xs:element name="SignupType" type="ns1:TADSLSignupType" />
+          <xs:element name="HardwareType" type="ns1:TADSLHardwareType" />
+          <xs:element name="StaticIPCount" type="ns1:TADSLStaticIPCount" />
+          <xs:element name="CustomerID" type="xs:string" />
+          <xs:element name="Username" type="xs:string" />
+          <xs:element name="BillingFrequency" type="ns1:TBillingFrequency" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="TADSLProductType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="apUnspecified" />
+          <xs:enumeration value="ap512" />
+          <xs:enumeration value="ap1024" />
+          <xs:enumeration value="ap2048" />
+          <xs:enumeration value="ap1024Plus" />
+          <xs:enumeration value="ap2048Plus" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="TADSLSignupType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="asNewConnection" />
+          <xs:enumeration value="asMigrateConnection" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="TADSLHardwareType">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="htModem" />
+          <xs:enumeration value="htRouter" />
+          <xs:enumeration value="htOwn" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:simpleType name="TADSLStaticIPCount">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="siNone" />
+          <xs:enumeration value="siOne" />
+          <xs:enumeration value="siTwo" />
+          <xs:enumeration value="siSix" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TADSLConnection">
+        <xs:sequence>
+          <xs:element name="ADSLConnectionID" type="xs:string" />
+          <xs:element name="LineNumber" type="xs:string" />
+          <xs:element name="Password" type="xs:string" />
+          <xs:element name="Status" type="ns1:TADSLConnectionStatus" />
+          <xs:element name="ProductType" type="ns1:TADSLProductType" />
+          <xs:element name="CustomerID" type="xs:string" />
+          <xs:element name="CustomerName" type="xs:string" />
+          <xs:element name="CustomerContact" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="TADSLConnectionStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="acsUnspecified" />
+          <xs:enumeration value="acsEnabled" />
+          <xs:enumeration value="acsDisabled" />
+          <xs:enumeration value="acsPaused" />
+          <xs:enumeration value="acsPending" />
+          <xs:enumeration value="acsOrderFailed" />
+          <xs:enumeration value="acsDeleted" />
+          <xs:enumeration value="acsUpgrading" />
+          <xs:enumeration value="acsDeleting" />
+          <xs:enumeration value="acsPendingUpgrade" />
+          <xs:enumeration value="acsPendingActivation" />
+          <xs:enumeration value="acsPendingMigration" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TADSLConnectionList">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TADSLConnection[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TADSLProductList">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TADSLProduct[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TADSLProduct">
+        <xs:sequence>
+          <xs:element name="ProductType" type="ns1:TADSLProductType" />
+          <xs:element name="SignupType" type="ns1:TADSLSignupType" />
+          <xs:element name="StaticIPAddressCount" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TADSLStaticIPList">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TADSLStaticIP[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TADSLStaticIP">
+        <xs:sequence>
+          <xs:element name="IPAddress" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TADSLStaticIPInstall">
+        <xs:sequence>
+          <xs:element name="ADSLConnectionID" type="xs:string" />
+          <xs:element name="StaticIPCount" type="ns1:TADSLStaticIPCount" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TDialUpInstall">
+        <xs:sequence>
+          <xs:element name="Username" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TDialUpConnection">
+        <xs:sequence>
+          <xs:element name="DialUpConnectionID" type="xs:string" />
+          <xs:element name="Username" type="xs:string" />
+          <xs:element name="Password" type="xs:string" />
+          <xs:element name="Status" type="ns1:TDialUpConnectionStatus" />
+          <xs:element name="Plan" type="xs:string" />
+          <xs:element name="Email" type="xs:string" />
+          <xs:element name="AccessNumber" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="TDialUpConnectionStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="dcsUnspecified" />
+          <xs:enumeration value="dcsActive" />
+          <xs:enumeration value="dcsInactive" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TDialUpConnectionList">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TDialUpConnection[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TDomainServerOptions">
+        <xs:sequence>
+          <xs:element name="DomainName" type="xs:string" />
+          <xs:element name="DomainType" type="ns1:TDomainType" />
+          <xs:element name="OSType" type="ns1:TOSType" />
+          <xs:element name="ASPEnabled" type="xs:boolean" />
+          <xs:element name="ASPNETEnabled" type="xs:boolean" />
+          <xs:element name="LoadBalancingEnabled" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TMatrixStatsInstall">
+        <xs:sequence>
+          <xs:element name="DomainName" type="xs:string" />
+          <xs:element name="DomainType" type="ns1:TDomainType" />
+          <xs:element name="Username" type="xs:string" />
+          <xs:element name="Password" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TMatrixStats">
+        <xs:sequence>
+          <xs:element name="DomainName" type="xs:string" />
+          <xs:element name="DomainType" type="ns1:TDomainType" />
+          <xs:element name="Username" type="xs:string" />
+          <xs:element name="Status" type="ns1:TDomainAddOnStatus" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="TDomainAddOnStatus">
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="dasUnknown" />
+          <xs:enumeration value="dasInstalled" />
+          <xs:enumeration value="dasNotInstalled" />
+        </xs:restriction>
+      </xs:simpleType>
+      <xs:complexType name="TCustomerControlPanelInstall">
+        <xs:sequence>
+          <xs:element name="DomainName" type="xs:string" />
+          <xs:element name="DomainType" type="ns1:TDomainType" />
+          <xs:element name="Username" type="xs:string" />
+          <xs:element name="Password" type="xs:string" />
+          <xs:element name="StyleID" type="xs:string" />
+          <xs:element name="SupportURL" type="xs:string" />
+          <xs:element name="ContactURL" type="xs:string" />
+          <xs:element name="DatabaseName" type="xs:string" />
+          <xs:element name="DatabaseType" type="ns1:TDatabaseType" />
+          <xs:element name="ConfigureEmail" type="xs:boolean" />
+          <xs:element name="ConfigureSMS" type="xs:boolean" />
+          <xs:element name="ConfigureSPAM" type="xs:boolean" />
+          <xs:element name="ConfigureFTP" type="xs:boolean" />
+          <xs:element name="ConfigureODBC" type="xs:boolean" />
+          <xs:element name="ConfigureProtectedFolders" type="xs:boolean" />
+          <xs:element name="ConfigureLivestats" type="xs:boolean" />
+          <xs:element name="ConfigureFrontpage" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TCustomerControlPanel">
+        <xs:sequence>
+          <xs:element name="Username" type="xs:string" />
+          <xs:element name="Password" type="xs:string" />
+          <xs:element name="Enabled" type="xs:boolean" />
+          <xs:element name="StyleID" type="xs:string" />
+          <xs:element name="SupportURL" type="xs:string" />
+          <xs:element name="ContactURL" type="xs:string" />
+          <xs:element name="DatabaseName" type="xs:string" />
+          <xs:element name="DatabaseType" type="ns1:TDatabaseType" />
+          <xs:element name="ConfigureEmail" type="xs:boolean" />
+          <xs:element name="ConfigureSMS" type="xs:boolean" />
+          <xs:element name="ConfigureSPAM" type="xs:boolean" />
+          <xs:element name="ConfigureFTP" type="xs:boolean" />
+          <xs:element name="ConfigureODBC" type="xs:boolean" />
+          <xs:element name="ConfigureProtectedFolders" type="xs:boolean" />
+          <xs:element name="ConfigureLivestats" type="xs:boolean" />
+          <xs:element name="ConfigureFrontpage" type="xs:boolean" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TCustomerControlPanelList">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TCustomerControlPanel[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TCustomerControlPanelStyleList">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TCustomerControlPanelStyle[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TCustomerControlPanelStyle">
+        <xs:sequence>
+          <xs:element name="StyleID" type="xs:string" />
+          <xs:element name="StyleName" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TCountryList">
+        <xs:complexContent mixed="false">
+          <xs:restriction base="soapenc:Array">
+            <xs:sequence />
+            <xs:attribute xmlns:n1="http://schemas.xmlsoap.org/wsdl/" n1:arrayType="ns1:TCountry[]" ref="soapenc:arrayType" />
+          </xs:restriction>
+        </xs:complexContent>
+      </xs:complexType>
+      <xs:complexType name="TCountry">
+        <xs:sequence>
+          <xs:element name="CountryCode" type="xs:string" />
+          <xs:element name="CountryInitials" type="xs:string" />
+          <xs:element name="CountryName" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="login0Request">
+    <part name="Username" type="xs:string" />
+    <part name="Password" type="xs:string" />
+    <part name="IPAddress" type="xs:string" />
+  </message>
+  <message name="login0Response">
+    <part name="return" type="xs:string" />
+  </message>
+  <message name="logout1Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="logout1Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="setTestMode2Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="Active" type="xs:boolean" />
+    <part name="Successful" type="xs:boolean" />
+    <part name="RecordCount" type="xs:int" />
+    <part name="RaiseErrorCode" type="xs:int" />
+  </message>
+  <message name="setTestMode2Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="addDomain3Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DomainInstall" type="ns1:TDomainInstall" />
+  </message>
+  <message name="addDomain3Response">
+    <part name="return" type="ns1:TDomain" />
+  </message>
+  <message name="addHostingToDomain4Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DomainInstall" type="ns1:TDomainInstall" />
+  </message>
+  <message name="addHostingToDomain4Response">
+    <part name="return" type="ns1:TDomain" />
+  </message>
+  <message name="addRegistrationToDomain5Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DomainInstall" type="ns1:TDomainInstall" />
+  </message>
+  <message name="addRegistrationToDomain5Response">
+    <part name="return" type="ns1:TDomain" />
+  </message>
+  <message name="getDomainOverviewListCount6Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="NameFilter" type="xs:string" />
+  </message>
+  <message name="getDomainOverviewListCount6Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="getDomainOverviewList7Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="NameFilter" type="xs:string" />
+    <part name="StartAt" type="xs:int" />
+    <part name="MaxCount" type="xs:int" />
+  </message>
+  <message name="getDomainOverviewList7Response">
+    <part name="return" type="ns1:TDomainOverviewList" />
+  </message>
+  <message name="getDomainListCount8Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="NameFilter" type="xs:string" />
+  </message>
+  <message name="getDomainListCount8Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="getDomainList9Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="NameFilter" type="xs:string" />
+    <part name="StartAt" type="xs:int" />
+    <part name="MaxCount" type="xs:int" />
+  </message>
+  <message name="getDomainList9Response">
+    <part name="return" type="ns1:TDomainList" />
+  </message>
+  <message name="getDomain10Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DomainName" type="xs:string" />
+    <part name="DomainType" type="ns1:TDomainType" />
+  </message>
+  <message name="getDomain10Response">
+    <part name="return" type="ns1:TDomain" />
+  </message>
+  <message name="getAliasDomainList11Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getAliasDomainList11Response">
+    <part name="return" type="ns1:TDomainOverviewList" />
+  </message>
+  <message name="isDomainAvailable12Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DomainName" type="xs:string" />
+  </message>
+  <message name="isDomainAvailable12Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="getDomainRegistrationTermsAllowed13Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DomainName" type="xs:string" />
+    <part name="RegistrationType" type="ns1:TRegistrationType" />
+  </message>
+  <message name="getDomainRegistrationTermsAllowed13Response">
+    <part name="return" type="ns1:TRegistrationTermList" />
+  </message>
+  <message name="removeDomain14Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DomainName" type="xs:string" />
+    <part name="DomainType" type="ns1:TDomainType" />
+  </message>
+  <message name="removeDomain14Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="addMailbox15Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="MailboxInstall" type="ns1:TMailboxInstall" />
+  </message>
+  <message name="addMailbox15Response">
+    <part name="return" type="ns1:TMailbox" />
+  </message>
+  <message name="getMailboxListCount16Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DomainName" type="xs:string" />
+    <part name="DomainType" type="ns1:TDomainType" />
+  </message>
+  <message name="getMailboxListCount16Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="getMailboxList17Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DomainName" type="xs:string" />
+    <part name="DomainType" type="ns1:TDomainType" />
+    <part name="StartAt" type="xs:int" />
+    <part name="MaxCount" type="xs:int" />
+  </message>
+  <message name="getMailboxList17Response">
+    <part name="return" type="ns1:TMailboxList" />
+  </message>
+  <message name="getMailbox18Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="MailboxName" type="xs:string" />
+    <part name="DomainName" type="xs:string" />
+    <part name="DomainType" type="ns1:TDomainType" />
+  </message>
+  <message name="getMailbox18Response">
+    <part name="return" type="ns1:TMailbox" />
+  </message>
+  <message name="removeMailbox19Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="MailboxName" type="xs:string" />
+    <part name="DomainName" type="xs:string" />
+    <part name="DomainType" type="ns1:TDomainType" />
+  </message>
+  <message name="removeMailbox19Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="getDefaultMailHandling20Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DomainName" type="xs:string" />
+    <part name="DomainType" type="ns1:TDomainType" />
+  </message>
+  <message name="getDefaultMailHandling20Response">
+    <part name="return" type="ns1:TDefaultMailHandling" />
+  </message>
+  <message name="updateDefaultMailHandling21Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DefaultMailHandling" type="ns1:TDefaultMailHandling" />
+  </message>
+  <message name="updateDefaultMailHandling21Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="enableGoodLinkAccess22Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="GoodLinkInstall" type="ns1:TGoodLinkInstall" />
+  </message>
+  <message name="enableGoodLinkAccess22Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="disableGoodLinkAccess23Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="MailboxName" type="xs:string" />
+    <part name="DomainName" type="xs:string" />
+    <part name="DomainType" type="ns1:TDomainType" />
+  </message>
+  <message name="disableGoodLinkAccess23Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="setMailboxPassword24Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="MailboxName" type="xs:string" />
+    <part name="DomainName" type="xs:string" />
+    <part name="DomainType" type="ns1:TDomainType" />
+    <part name="Password" type="xs:string" />
+  </message>
+  <message name="setMailboxPassword24Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="addCustomer25Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="CustomerInstall" type="ns1:TCustomerInstall" />
+  </message>
+  <message name="addCustomer25Response">
+    <part name="return" type="ns1:TCustomer" />
+  </message>
+  <message name="getCustomerOverviewListCount26Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getCustomerOverviewListCount26Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="getCustomerOverviewList27Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="StartAt" type="xs:int" />
+    <part name="MaxCount" type="xs:int" />
+  </message>
+  <message name="getCustomerOverviewList27Response">
+    <part name="return" type="ns1:TCustomerOverviewList" />
+  </message>
+  <message name="getCustomerListCount28Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getCustomerListCount28Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="getCustomerList29Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="StartAt" type="xs:int" />
+    <part name="MaxCount" type="xs:int" />
+  </message>
+  <message name="getCustomerList29Response">
+    <part name="return" type="ns1:TCustomerList" />
+  </message>
+  <message name="getCustomer30Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="CustomerID" type="xs:string" />
+  </message>
+  <message name="getCustomer30Response">
+    <part name="return" type="ns1:TCustomer" />
+  </message>
+  <message name="updateCustomer31Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="Customer" type="ns1:TCustomer" />
+  </message>
+  <message name="updateCustomer31Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="removeCustomer32Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="CustomerID" type="xs:string" />
+  </message>
+  <message name="removeCustomer32Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="addCustomFTPAccount33Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="CustomFTPAccountInstall" type="ns1:TCustomFTPAccountInstall" />
+  </message>
+  <message name="addCustomFTPAccount33Response">
+    <part name="return" type="ns1:TFTPAccount" />
+  </message>
+  <message name="addCustomFTPAccountFolder34Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="CustomFTPAccountFolderInstall" type="ns1:TCustomFTPAccountFolderInstall" />
+  </message>
+  <message name="addCustomFTPAccountFolder34Response">
+    <part name="return" type="ns1:TFTPFolder" />
+  </message>
+  <message name="getCustomFTPAccountListCount35Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getCustomFTPAccountListCount35Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="getCustomFTPAccountList36Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="StartAt" type="xs:int" />
+    <part name="MaxCount" type="xs:int" />
+  </message>
+  <message name="getCustomFTPAccountList36Response">
+    <part name="return" type="ns1:TFTPAccountList" />
+  </message>
+  <message name="getDomainFTPAccount37Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DomainName" type="xs:string" />
+    <part name="DomainType" type="ns1:TDomainType" />
+  </message>
+  <message name="getDomainFTPAccount37Response">
+    <part name="return" type="ns1:TFTPAccount" />
+  </message>
+  <message name="getFTPAccount38Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="FTPAccountID" type="xs:string" />
+  </message>
+  <message name="getFTPAccount38Response">
+    <part name="return" type="ns1:TFTPAccount" />
+  </message>
+  <message name="getCustomFTPAccountFolderListCount39Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="FTPAccountID" type="xs:string" />
+  </message>
+  <message name="getCustomFTPAccountFolderListCount39Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="getCustomFTPAccountFolderList40Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="FTPAccountID" type="xs:string" />
+    <part name="StartAt" type="xs:int" />
+    <part name="MaxCount" type="xs:int" />
+  </message>
+  <message name="getCustomFTPAccountFolderList40Response">
+    <part name="return" type="ns1:TFTPFolderList" />
+  </message>
+  <message name="getCustomFTPAccountFolder41Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="FTPFolderID" type="xs:string" />
+  </message>
+  <message name="getCustomFTPAccountFolder41Response">
+    <part name="return" type="ns1:TFTPFolder" />
+  </message>
+  <message name="getCustomFTPAccountFolderDomainList42Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getCustomFTPAccountFolderDomainList42Response">
+    <part name="return" type="ns1:TDomainOverviewList" />
+  </message>
+  <message name="setFTPAccountPassword43Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="FTPAccountID" type="xs:string" />
+    <part name="Password" type="xs:string" />
+  </message>
+  <message name="setFTPAccountPassword43Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="removeCustomFTPAccount44Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="FTPAccountID" type="xs:string" />
+  </message>
+  <message name="removeCustomFTPAccount44Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="removeCustomFTPAccountFolder45Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="FTPAccountID" type="xs:string" />
+    <part name="FTPFolderID" type="xs:string" />
+  </message>
+  <message name="removeCustomFTPAccountFolder45Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="addDatabase46Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DatabaseInstall" type="ns1:TDatabaseInstall" />
+  </message>
+  <message name="addDatabase46Response">
+    <part name="return" type="ns1:TDatabase" />
+  </message>
+  <message name="addDatabaseUser47Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DatabaseUserInstall" type="ns1:TDatabaseUserInstall" />
+  </message>
+  <message name="addDatabaseUser47Response">
+    <part name="return" type="ns1:TDatabaseUser" />
+  </message>
+  <message name="getDatabaseListCount48Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getDatabaseListCount48Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="getDatabaseList49Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="StartAt" type="xs:int" />
+    <part name="MaxCount" type="xs:int" />
+  </message>
+  <message name="getDatabaseList49Response">
+    <part name="return" type="ns1:TDatabaseList" />
+  </message>
+  <message name="getDatabaseCreationQueueListCount50Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getDatabaseCreationQueueListCount50Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="getDatabaseCreationQueueList51Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="StartAt" type="xs:int" />
+    <part name="MaxCount" type="xs:int" />
+  </message>
+  <message name="getDatabaseCreationQueueList51Response">
+    <part name="return" type="ns1:TDatabaseList" />
+  </message>
+  <message name="cancelDatabaseCreationRequest52Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DatabaseName" type="xs:string" />
+  </message>
+  <message name="cancelDatabaseCreationRequest52Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="retryDatabaseCreationRequest53Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DatabaseName" type="xs:string" />
+  </message>
+  <message name="retryDatabaseCreationRequest53Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="getDatabaseDeletionQueueListCount54Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getDatabaseDeletionQueueListCount54Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="getDatabaseDeletionQueueList55Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="StartAt" type="xs:int" />
+    <part name="MaxCount" type="xs:int" />
+  </message>
+  <message name="getDatabaseDeletionQueueList55Response">
+    <part name="return" type="ns1:TDatabaseList" />
+  </message>
+  <message name="retryDatabaseDeletionRequest56Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DatabaseName" type="xs:string" />
+  </message>
+  <message name="retryDatabaseDeletionRequest56Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="getDatabase57Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DatabaseName" type="xs:string" />
+    <part name="DatabaseType" type="ns1:TDatabaseType" />
+  </message>
+  <message name="getDatabase57Response">
+    <part name="return" type="ns1:TDatabase" />
+  </message>
+  <message name="getDatabaseUserListCount58Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DatabaseName" type="xs:string" />
+    <part name="DatabaseType" type="ns1:TDatabaseType" />
+  </message>
+  <message name="getDatabaseUserListCount58Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="getDatabaseUserList59Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DatabaseName" type="xs:string" />
+    <part name="DatabaseType" type="ns1:TDatabaseType" />
+    <part name="StartAt" type="xs:int" />
+    <part name="MaxCount" type="xs:int" />
+  </message>
+  <message name="getDatabaseUserList59Response">
+    <part name="return" type="ns1:TDatabaseUserList" />
+  </message>
+  <message name="getDatabaseUser60Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DatabaseName" type="xs:string" />
+    <part name="DatabaseType" type="ns1:TDatabaseType" />
+    <part name="Username" type="xs:string" />
+  </message>
+  <message name="getDatabaseUser60Response">
+    <part name="return" type="ns1:TDatabaseUser" />
+  </message>
+  <message name="setDatabasePassword61Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DatabaseName" type="xs:string" />
+    <part name="DatabaseType" type="ns1:TDatabaseType" />
+    <part name="Password" type="xs:string" />
+  </message>
+  <message name="setDatabasePassword61Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="removeDatabase62Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DatabaseName" type="xs:string" />
+    <part name="DatabaseType" type="ns1:TDatabaseType" />
+  </message>
+  <message name="removeDatabase62Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="removeDatabaseUser63Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DatabaseName" type="xs:string" />
+    <part name="DatabaseType" type="ns1:TDatabaseType" />
+    <part name="Username" type="xs:string" />
+  </message>
+  <message name="removeDatabaseUser63Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="addODBCDataSource64Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="ODBCDataSourceInstall" type="ns1:TODBCDataSourceInstall" />
+  </message>
+  <message name="addODBCDataSource64Response">
+    <part name="return" type="ns1:TODBCDataSource" />
+  </message>
+  <message name="getODBCDataSourceListCount65Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DomainName" type="xs:string" />
+    <part name="DomainType" type="ns1:TDomainType" />
+  </message>
+  <message name="getODBCDataSourceListCount65Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="getODBCDataSourceList66Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DomainName" type="xs:string" />
+    <part name="DomainType" type="ns1:TDomainType" />
+    <part name="StartAt" type="xs:int" />
+    <part name="MaxCount" type="xs:int" />
+  </message>
+  <message name="getODBCDataSourceList66Response">
+    <part name="return" type="ns1:TODBCDataSourceList" />
+  </message>
+  <message name="getODBCDataSource67Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DataSourceID" type="xs:string" />
+    <part name="DomainName" type="xs:string" />
+    <part name="DomainType" type="ns1:TDomainType" />
+  </message>
+  <message name="getODBCDataSource67Response">
+    <part name="return" type="ns1:TODBCDataSource" />
+  </message>
+  <message name="removeODBCDataSource68Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DataSourceID" type="xs:string" />
+    <part name="DomainName" type="xs:string" />
+    <part name="DomainType" type="ns1:TDomainType" />
+  </message>
+  <message name="removeODBCDataSource68Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="addADSLConnection69Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="ADSLInstall" type="ns1:TADSLInstall" />
+  </message>
+  <message name="addADSLConnection69Response">
+    <part name="return" type="ns1:TADSLConnection" />
+  </message>
+  <message name="getADSLConnectionListCount70Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getADSLConnectionListCount70Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="getADSLConnectionList71Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="StartAt" type="xs:int" />
+    <part name="MaxCount" type="xs:int" />
+  </message>
+  <message name="getADSLConnectionList71Response">
+    <part name="return" type="ns1:TADSLConnectionList" />
+  </message>
+  <message name="getADSLConnection72Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="ADSLConnectionID" type="xs:string" />
+  </message>
+  <message name="getADSLConnection72Response">
+    <part name="return" type="ns1:TADSLConnection" />
+  </message>
+  <message name="getADSLProductsAvailable73Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="LineNumber" type="xs:string" />
+  </message>
+  <message name="getADSLProductsAvailable73Response">
+    <part name="return" type="ns1:TADSLProductList" />
+  </message>
+  <message name="getADSLConnectionStaticIPListCount74Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="ADSLConnectionID" type="xs:string" />
+  </message>
+  <message name="getADSLConnectionStaticIPListCount74Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="getADSLConnectionStaticIPList75Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="ADSLConnectionID" type="xs:string" />
+  </message>
+  <message name="getADSLConnectionStaticIPList75Response">
+    <part name="return" type="ns1:TADSLStaticIPList" />
+  </message>
+  <message name="addADSLConnectionStaticIP76Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="ADSLStaticIPInstall" type="ns1:TADSLStaticIPInstall" />
+  </message>
+  <message name="addADSLConnectionStaticIP76Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="updateADSLConnection77Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="ADSLConnection" type="ns1:TADSLConnection" />
+  </message>
+  <message name="updateADSLConnection77Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="removeADSLConnection78Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="ADSLConnectionID" type="xs:string" />
+    <part name="CancelImmediately" type="xs:boolean" />
+  </message>
+  <message name="removeADSLConnection78Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="addDialUpConnection79Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DialUpInstall" type="ns1:TDialUpInstall" />
+  </message>
+  <message name="addDialUpConnection79Response">
+    <part name="return" type="ns1:TDialUpConnection" />
+  </message>
+  <message name="getDialUpConnectionListCount80Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getDialUpConnectionListCount80Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="getDialUpConnectionList81Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="StartAt" type="xs:int" />
+    <part name="MaxCount" type="xs:int" />
+  </message>
+  <message name="getDialUpConnectionList81Response">
+    <part name="return" type="ns1:TDialUpConnectionList" />
+  </message>
+  <message name="getDialUpConnection82Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DialUpConnectionID" type="xs:string" />
+  </message>
+  <message name="getDialUpConnection82Response">
+    <part name="return" type="ns1:TDialUpConnection" />
+  </message>
+  <message name="updateDialUpConnection83Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DialUpConnection" type="ns1:TDialUpConnection" />
+  </message>
+  <message name="updateDialUpConnection83Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="removeDialUpConnection84Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DialUpConnectionID" type="xs:string" />
+  </message>
+  <message name="removeDialUpConnection84Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="getDomainServerOptions85Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DomainName" type="xs:string" />
+    <part name="DomainType" type="ns1:TDomainType" />
+  </message>
+  <message name="getDomainServerOptions85Response">
+    <part name="return" type="ns1:TDomainServerOptions" />
+  </message>
+  <message name="updateDomainServerOptions86Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DomainServerOptions" type="ns1:TDomainServerOptions" />
+  </message>
+  <message name="updateDomainServerOptions86Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="addMatrixStats87Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="MatrixStatsInstall" type="ns1:TMatrixStatsInstall" />
+  </message>
+  <message name="addMatrixStats87Response">
+    <part name="return" type="ns1:TMatrixStats" />
+  </message>
+  <message name="getMatrixStats88Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DomainName" type="xs:string" />
+    <part name="DomainType" type="ns1:TDomainType" />
+  </message>
+  <message name="getMatrixStats88Response">
+    <part name="return" type="ns1:TMatrixStats" />
+  </message>
+  <message name="removeMatrixStats89Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DomainName" type="xs:string" />
+    <part name="DomainType" type="ns1:TDomainType" />
+  </message>
+  <message name="removeMatrixStats89Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="resetMatrixStatsUser90Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DomainName" type="xs:string" />
+    <part name="DomainType" type="ns1:TDomainType" />
+  </message>
+  <message name="resetMatrixStatsUser90Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="addCustomerControlPanel91Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="CustomerControlPanelInstall" type="ns1:TCustomerControlPanelInstall" />
+  </message>
+  <message name="addCustomerControlPanel91Response">
+    <part name="return" type="ns1:TCustomerControlPanel" />
+  </message>
+  <message name="getCustomerControlPanelListCount92Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DomainName" type="xs:string" />
+    <part name="DomainType" type="ns1:TDomainType" />
+  </message>
+  <message name="getCustomerControlPanelListCount92Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="getCustomerControlPanelList93Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="DomainName" type="xs:string" />
+    <part name="DomainType" type="ns1:TDomainType" />
+    <part name="StartAt" type="xs:int" />
+    <part name="MaxCount" type="xs:int" />
+  </message>
+  <message name="getCustomerControlPanelList93Response">
+    <part name="return" type="ns1:TCustomerControlPanelList" />
+  </message>
+  <message name="getCustomerControlPanel94Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="Username" type="xs:string" />
+    <part name="DomainName" type="xs:string" />
+    <part name="DomainType" type="ns1:TDomainType" />
+  </message>
+  <message name="getCustomerControlPanel94Response">
+    <part name="return" type="ns1:TCustomerControlPanel" />
+  </message>
+  <message name="getCustomerControlPanelStyleList95Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getCustomerControlPanelStyleList95Response">
+    <part name="return" type="ns1:TCustomerControlPanelStyleList" />
+  </message>
+  <message name="getCustomerControlPanelStyle96Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="StyleID" type="xs:string" />
+  </message>
+  <message name="getCustomerControlPanelStyle96Response">
+    <part name="return" type="ns1:TCustomerControlPanelStyle" />
+  </message>
+  <message name="removeCustomerControlPanel97Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="Username" type="xs:string" />
+    <part name="DomainName" type="xs:string" />
+    <part name="DomainType" type="ns1:TDomainType" />
+  </message>
+  <message name="removeCustomerControlPanel97Response">
+    <part name="return" type="xs:boolean" />
+  </message>
+  <message name="getEmptyDomainInstallObject98Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getEmptyDomainInstallObject98Response">
+    <part name="return" type="ns1:TDomainInstall" />
+  </message>
+  <message name="getEmptyMailboxInstallObject99Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getEmptyMailboxInstallObject99Response">
+    <part name="return" type="ns1:TMailboxInstall" />
+  </message>
+  <message name="getEmptyGoodLinkInstallObject100Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getEmptyGoodLinkInstallObject100Response">
+    <part name="return" type="ns1:TGoodLinkInstall" />
+  </message>
+  <message name="getEmptyCustomerInstallObject101Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getEmptyCustomerInstallObject101Response">
+    <part name="return" type="ns1:TCustomerInstall" />
+  </message>
+  <message name="getEmptyCustomFTPAccountInstallObject102Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getEmptyCustomFTPAccountInstallObject102Response">
+    <part name="return" type="ns1:TCustomFTPAccountInstall" />
+  </message>
+  <message name="getEmptyCustomFTPAccountFolderInstallObject103Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getEmptyCustomFTPAccountFolderInstallObject103Response">
+    <part name="return" type="ns1:TCustomFTPAccountFolderInstall" />
+  </message>
+  <message name="getEmptyDatabaseInstallObject104Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getEmptyDatabaseInstallObject104Response">
+    <part name="return" type="ns1:TDatabaseInstall" />
+  </message>
+  <message name="getEmptyDatabaseUserInstallObject105Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getEmptyDatabaseUserInstallObject105Response">
+    <part name="return" type="ns1:TDatabaseUserInstall" />
+  </message>
+  <message name="getEmptyODBCDataSourceInstallObject106Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getEmptyODBCDataSourceInstallObject106Response">
+    <part name="return" type="ns1:TODBCDataSourceInstall" />
+  </message>
+  <message name="getEmptyADSLConnectionInstallObject107Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getEmptyADSLConnectionInstallObject107Response">
+    <part name="return" type="ns1:TADSLInstall" />
+  </message>
+  <message name="getEmptyADSLConnectionStaticIPInstallObject108Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getEmptyADSLConnectionStaticIPInstallObject108Response">
+    <part name="return" type="ns1:TADSLStaticIPInstall" />
+  </message>
+  <message name="getEmptyDialUpConnectionInstallObject109Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getEmptyDialUpConnectionInstallObject109Response">
+    <part name="return" type="ns1:TDialUpInstall" />
+  </message>
+  <message name="getEmptyMatrixStatsInstallObject110Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getEmptyMatrixStatsInstallObject110Response">
+    <part name="return" type="ns1:TMatrixStatsInstall" />
+  </message>
+  <message name="getEmptyCustomerControlPanelInstallObject111Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getEmptyCustomerControlPanelInstallObject111Response">
+    <part name="return" type="ns1:TCustomerControlPanelInstall" />
+  </message>
+  <message name="getAccountBalance112Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getAccountBalance112Response">
+    <part name="return" type="xs:int" />
+  </message>
+  <message name="getCountryList113Request">
+    <part name="SessionID" type="xs:string" />
+  </message>
+  <message name="getCountryList113Response">
+    <part name="return" type="ns1:TCountryList" />
+  </message>
+  <message name="getCountry114Request">
+    <part name="SessionID" type="xs:string" />
+    <part name="CountryCode" type="xs:int" />
+  </message>
+  <message name="getCountry114Response">
+    <part name="return" type="ns1:TCountry" />
+  </message>
+  <portType name="ISOAPServer">
+    <operation name="login">
+      <input message="tns:login0Request" />
+      <output message="tns:login0Response" />
+    </operation>
+    <operation name="logout">
+      <input message="tns:logout1Request" />
+      <output message="tns:logout1Response" />
+    </operation>
+    <operation name="setTestMode">
+      <input message="tns:setTestMode2Request" />
+      <output message="tns:setTestMode2Response" />
+    </operation>
+    <operation name="addDomain">
+      <input message="tns:addDomain3Request" />
+      <output message="tns:addDomain3Response" />
+    </operation>
+    <operation name="addHostingToDomain">
+      <input message="tns:addHostingToDomain4Request" />
+      <output message="tns:addHostingToDomain4Response" />
+    </operation>
+    <operation name="addRegistrationToDomain">
+      <input message="tns:addRegistrationToDomain5Request" />
+      <output message="tns:addRegistrationToDomain5Response" />
+    </operation>
+    <operation name="getDomainOverviewListCount">
+      <input message="tns:getDomainOverviewListCount6Request" />
+      <output message="tns:getDomainOverviewListCount6Response" />
+    </operation>
+    <operation name="getDomainOverviewList">
+      <input message="tns:getDomainOverviewList7Request" />
+      <output message="tns:getDomainOverviewList7Response" />
+    </operation>
+    <operation name="getDomainListCount">
+      <input message="tns:getDomainListCount8Request" />
+      <output message="tns:getDomainListCount8Response" />
+    </operation>
+    <operation name="getDomainList">
+      <input message="tns:getDomainList9Request" />
+      <output message="tns:getDomainList9Response" />
+    </operation>
+    <operation name="getDomain">
+      <input message="tns:getDomain10Request" />
+      <output message="tns:getDomain10Response" />
+    </operation>
+    <operation name="getAliasDomainList">
+      <input message="tns:getAliasDomainList11Request" />
+      <output message="tns:getAliasDomainList11Response" />
+    </operation>
+    <operation name="isDomainAvailable">
+      <input message="tns:isDomainAvailable12Request" />
+      <output message="tns:isDomainAvailable12Response" />
+    </operation>
+    <operation name="getDomainRegistrationTermsAllowed">
+      <input message="tns:getDomainRegistrationTermsAllowed13Request" />
+      <output message="tns:getDomainRegistrationTermsAllowed13Response" />
+    </operation>
+    <operation name="removeDomain">
+      <input message="tns:removeDomain14Request" />
+      <output message="tns:removeDomain14Response" />
+    </operation>
+    <operation name="addMailbox">
+      <input message="tns:addMailbox15Request" />
+      <output message="tns:addMailbox15Response" />
+    </operation>
+    <operation name="getMailboxListCount">
+      <input message="tns:getMailboxListCount16Request" />
+      <output message="tns:getMailboxListCount16Response" />
+    </operation>
+    <operation name="getMailboxList">
+      <input message="tns:getMailboxList17Request" />
+      <output message="tns:getMailboxList17Response" />
+    </operation>
+    <operation name="getMailbox">
+      <input message="tns:getMailbox18Request" />
+      <output message="tns:getMailbox18Response" />
+    </operation>
+    <operation name="removeMailbox">
+      <input message="tns:removeMailbox19Request" />
+      <output message="tns:removeMailbox19Response" />
+    </operation>
+    <operation name="getDefaultMailHandling">
+      <input message="tns:getDefaultMailHandling20Request" />
+      <output message="tns:getDefaultMailHandling20Response" />
+    </operation>
+    <operation name="updateDefaultMailHandling">
+      <input message="tns:updateDefaultMailHandling21Request" />
+      <output message="tns:updateDefaultMailHandling21Response" />
+    </operation>
+    <operation name="enableGoodLinkAccess">
+      <input message="tns:enableGoodLinkAccess22Request" />
+      <output message="tns:enableGoodLinkAccess22Response" />
+    </operation>
+    <operation name="disableGoodLinkAccess">
+      <input message="tns:disableGoodLinkAccess23Request" />
+      <output message="tns:disableGoodLinkAccess23Response" />
+    </operation>
+    <operation name="setMailboxPassword">
+      <input message="tns:setMailboxPassword24Request" />
+      <output message="tns:setMailboxPassword24Response" />
+    </operation>
+    <operation name="addCustomer">
+      <input message="tns:addCustomer25Request" />
+      <output message="tns:addCustomer25Response" />
+    </operation>
+    <operation name="getCustomerOverviewListCount">
+      <input message="tns:getCustomerOverviewListCount26Request" />
+      <output message="tns:getCustomerOverviewListCount26Response" />
+    </operation>
+    <operation name="getCustomerOverviewList">
+      <input message="tns:getCustomerOverviewList27Request" />
+      <output message="tns:getCustomerOverviewList27Response" />
+    </operation>
+    <operation name="getCustomerListCount">
+      <input message="tns:getCustomerListCount28Request" />
+      <output message="tns:getCustomerListCount28Response" />
+    </operation>
+    <operation name="getCustomerList">
+      <input message="tns:getCustomerList29Request" />
+      <output message="tns:getCustomerList29Response" />
+    </operation>
+    <operation name="getCustomer">
+      <input message="tns:getCustomer30Request" />
+      <output message="tns:getCustomer30Response" />
+    </operation>
+    <operation name="updateCustomer">
+      <input message="tns:updateCustomer31Request" />
+      <output message="tns:updateCustomer31Response" />
+    </operation>
+    <operation name="removeCustomer">
+      <input message="tns:removeCustomer32Request" />
+      <output message="tns:removeCustomer32Response" />
+    </operation>
+    <operation name="addCustomFTPAccount">
+      <input message="tns:addCustomFTPAccount33Request" />
+      <output message="tns:addCustomFTPAccount33Response" />
+    </operation>
+    <operation name="addCustomFTPAccountFolder">
+      <input message="tns:addCustomFTPAccountFolder34Request" />
+      <output message="tns:addCustomFTPAccountFolder34Response" />
+    </operation>
+    <operation name="getCustomFTPAccountListCount">
+      <input message="tns:getCustomFTPAccountListCount35Request" />
+      <output message="tns:getCustomFTPAccountListCount35Response" />
+    </operation>
+    <operation name="getCustomFTPAccountList">
+      <input message="tns:getCustomFTPAccountList36Request" />
+      <output message="tns:getCustomFTPAccountList36Response" />
+    </operation>
+    <operation name="getDomainFTPAccount">
+      <input message="tns:getDomainFTPAccount37Request" />
+      <output message="tns:getDomainFTPAccount37Response" />
+    </operation>
+    <operation name="getFTPAccount">
+      <input message="tns:getFTPAccount38Request" />
+      <output message="tns:getFTPAccount38Response" />
+    </operation>
+    <operation name="getCustomFTPAccountFolderListCount">
+      <input message="tns:getCustomFTPAccountFolderListCount39Request" />
+      <output message="tns:getCustomFTPAccountFolderListCount39Response" />
+    </operation>
+    <operation name="getCustomFTPAccountFolderList">
+      <input message="tns:getCustomFTPAccountFolderList40Request" />
+      <output message="tns:getCustomFTPAccountFolderList40Response" />
+    </operation>
+    <operation name="getCustomFTPAccountFolder">
+      <input message="tns:getCustomFTPAccountFolder41Request" />
+      <output message="tns:getCustomFTPAccountFolder41Response" />
+    </operation>
+    <operation name="getCustomFTPAccountFolderDomainList">
+      <input message="tns:getCustomFTPAccountFolderDomainList42Request" />
+      <output message="tns:getCustomFTPAccountFolderDomainList42Response" />
+    </operation>
+    <operation name="setFTPAccountPassword">
+      <input message="tns:setFTPAccountPassword43Request" />
+      <output message="tns:setFTPAccountPassword43Response" />
+    </operation>
+    <operation name="removeCustomFTPAccount">
+      <input message="tns:removeCustomFTPAccount44Request" />
+      <output message="tns:removeCustomFTPAccount44Response" />
+    </operation>
+    <operation name="removeCustomFTPAccountFolder">
+      <input message="tns:removeCustomFTPAccountFolder45Request" />
+      <output message="tns:removeCustomFTPAccountFolder45Response" />
+    </operation>
+    <operation name="addDatabase">
+      <input message="tns:addDatabase46Request" />
+      <output message="tns:addDatabase46Response" />
+    </operation>
+    <operation name="addDatabaseUser">
+      <input message="tns:addDatabaseUser47Request" />
+      <output message="tns:addDatabaseUser47Response" />
+    </operation>
+    <operation name="getDatabaseListCount">
+      <input message="tns:getDatabaseListCount48Request" />
+      <output message="tns:getDatabaseListCount48Response" />
+    </operation>
+    <operation name="getDatabaseList">
+      <input message="tns:getDatabaseList49Request" />
+      <output message="tns:getDatabaseList49Response" />
+    </operation>
+    <operation name="getDatabaseCreationQueueListCount">
+      <input message="tns:getDatabaseCreationQueueListCount50Request" />
+      <output message="tns:getDatabaseCreationQueueListCount50Response" />
+    </operation>
+    <operation name="getDatabaseCreationQueueList">
+      <input message="tns:getDatabaseCreationQueueList51Request" />
+      <output message="tns:getDatabaseCreationQueueList51Response" />
+    </operation>
+    <operation name="cancelDatabaseCreationRequest">
+      <input message="tns:cancelDatabaseCreationRequest52Request" />
+      <output message="tns:cancelDatabaseCreationRequest52Response" />
+    </operation>
+    <operation name="retryDatabaseCreationRequest">
+      <input message="tns:retryDatabaseCreationRequest53Request" />
+      <output message="tns:retryDatabaseCreationRequest53Response" />
+    </operation>
+    <operation name="getDatabaseDeletionQueueListCount">
+      <input message="tns:getDatabaseDeletionQueueListCount54Request" />
+      <output message="tns:getDatabaseDeletionQueueListCount54Response" />
+    </operation>
+    <operation name="getDatabaseDeletionQueueList">
+      <input message="tns:getDatabaseDeletionQueueList55Request" />
+      <output message="tns:getDatabaseDeletionQueueList55Response" />
+    </operation>
+    <operation name="retryDatabaseDeletionRequest">
+      <input message="tns:retryDatabaseDeletionRequest56Request" />
+      <output message="tns:retryDatabaseDeletionRequest56Response" />
+    </operation>
+    <operation name="getDatabase">
+      <input message="tns:getDatabase57Request" />
+      <output message="tns:getDatabase57Response" />
+    </operation>
+    <operation name="getDatabaseUserListCount">
+      <input message="tns:getDatabaseUserListCount58Request" />
+      <output message="tns:getDatabaseUserListCount58Response" />
+    </operation>
+    <operation name="getDatabaseUserList">
+      <input message="tns:getDatabaseUserList59Request" />
+      <output message="tns:getDatabaseUserList59Response" />
+    </operation>
+    <operation name="getDatabaseUser">
+      <input message="tns:getDatabaseUser60Request" />
+      <output message="tns:getDatabaseUser60Response" />
+    </operation>
+    <operation name="setDatabasePassword">
+      <input message="tns:setDatabasePassword61Request" />
+      <output message="tns:setDatabasePassword61Response" />
+    </operation>
+    <operation name="removeDatabase">
+      <input message="tns:removeDatabase62Request" />
+      <output message="tns:removeDatabase62Response" />
+    </operation>
+    <operation name="removeDatabaseUser">
+      <input message="tns:removeDatabaseUser63Request" />
+      <output message="tns:removeDatabaseUser63Response" />
+    </operation>
+    <operation name="addODBCDataSource">
+      <input message="tns:addODBCDataSource64Request" />
+      <output message="tns:addODBCDataSource64Response" />
+    </operation>
+    <operation name="getODBCDataSourceListCount">
+      <input message="tns:getODBCDataSourceListCount65Request" />
+      <output message="tns:getODBCDataSourceListCount65Response" />
+    </operation>
+    <operation name="getODBCDataSourceList">
+      <input message="tns:getODBCDataSourceList66Request" />
+      <output message="tns:getODBCDataSourceList66Response" />
+    </operation>
+    <operation name="getODBCDataSource">
+      <input message="tns:getODBCDataSource67Request" />
+      <output message="tns:getODBCDataSource67Response" />
+    </operation>
+    <operation name="removeODBCDataSource">
+      <input message="tns:removeODBCDataSource68Request" />
+      <output message="tns:removeODBCDataSource68Response" />
+    </operation>
+    <operation name="addADSLConnection">
+      <input message="tns:addADSLConnection69Request" />
+      <output message="tns:addADSLConnection69Response" />
+    </operation>
+    <operation name="getADSLConnectionListCount">
+      <input message="tns:getADSLConnectionListCount70Request" />
+      <output message="tns:getADSLConnectionListCount70Response" />
+    </operation>
+    <operation name="getADSLConnectionList">
+      <input message="tns:getADSLConnectionList71Request" />
+      <output message="tns:getADSLConnectionList71Response" />
+    </operation>
+    <operation name="getADSLConnection">
+      <input message="tns:getADSLConnection72Request" />
+      <output message="tns:getADSLConnection72Response" />
+    </operation>
+    <operation name="getADSLProductsAvailable">
+      <input message="tns:getADSLProductsAvailable73Request" />
+      <output message="tns:getADSLProductsAvailable73Response" />
+    </operation>
+    <operation name="getADSLConnectionStaticIPListCount">
+      <input message="tns:getADSLConnectionStaticIPListCount74Request" />
+      <output message="tns:getADSLConnectionStaticIPListCount74Response" />
+    </operation>
+    <operation name="getADSLConnectionStaticIPList">
+      <input message="tns:getADSLConnectionStaticIPList75Request" />
+      <output message="tns:getADSLConnectionStaticIPList75Response" />
+    </operation>
+    <operation name="addADSLConnectionStaticIP">
+      <input message="tns:addADSLConnectionStaticIP76Request" />
+      <output message="tns:addADSLConnectionStaticIP76Response" />
+    </operation>
+    <operation name="updateADSLConnection">
+      <input message="tns:updateADSLConnection77Request" />
+      <output message="tns:updateADSLConnection77Response" />
+    </operation>
+    <operation name="removeADSLConnection">
+      <input message="tns:removeADSLConnection78Request" />
+      <output message="tns:removeADSLConnection78Response" />
+    </operation>
+    <operation name="addDialUpConnection">
+      <input message="tns:addDialUpConnection79Request" />
+      <output message="tns:addDialUpConnection79Response" />
+    </operation>
+    <operation name="getDialUpConnectionListCount">
+      <input message="tns:getDialUpConnectionListCount80Request" />
+      <output message="tns:getDialUpConnectionListCount80Response" />
+    </operation>
+    <operation name="getDialUpConnectionList">
+      <input message="tns:getDialUpConnectionList81Request" />
+      <output message="tns:getDialUpConnectionList81Response" />
+    </operation>
+    <operation name="getDialUpConnection">
+      <input message="tns:getDialUpConnection82Request" />
+      <output message="tns:getDialUpConnection82Response" />
+    </operation>
+    <operation name="updateDialUpConnection">
+      <input message="tns:updateDialUpConnection83Request" />
+      <output message="tns:updateDialUpConnection83Response" />
+    </operation>
+    <operation name="removeDialUpConnection">
+      <input message="tns:removeDialUpConnection84Request" />
+      <output message="tns:removeDialUpConnection84Response" />
+    </operation>
+    <operation name="getDomainServerOptions">
+      <input message="tns:getDomainServerOptions85Request" />
+      <output message="tns:getDomainServerOptions85Response" />
+    </operation>
+    <operation name="updateDomainServerOptions">
+      <input message="tns:updateDomainServerOptions86Request" />
+      <output message="tns:updateDomainServerOptions86Response" />
+    </operation>
+    <operation name="addMatrixStats">
+      <input message="tns:addMatrixStats87Request" />
+      <output message="tns:addMatrixStats87Response" />
+    </operation>
+    <operation name="getMatrixStats">
+      <input message="tns:getMatrixStats88Request" />
+      <output message="tns:getMatrixStats88Response" />
+    </operation>
+    <operation name="removeMatrixStats">
+      <input message="tns:removeMatrixStats89Request" />
+      <output message="tns:removeMatrixStats89Response" />
+    </operation>
+    <operation name="resetMatrixStatsUser">
+      <input message="tns:resetMatrixStatsUser90Request" />
+      <output message="tns:resetMatrixStatsUser90Response" />
+    </operation>
+    <operation name="addCustomerControlPanel">
+      <input message="tns:addCustomerControlPanel91Request" />
+      <output message="tns:addCustomerControlPanel91Response" />
+    </operation>
+    <operation name="getCustomerControlPanelListCount">
+      <input message="tns:getCustomerControlPanelListCount92Request" />
+      <output message="tns:getCustomerControlPanelListCount92Response" />
+    </operation>
+    <operation name="getCustomerControlPanelList">
+      <input message="tns:getCustomerControlPanelList93Request" />
+      <output message="tns:getCustomerControlPanelList93Response" />
+    </operation>
+    <operation name="getCustomerControlPanel">
+      <input message="tns:getCustomerControlPanel94Request" />
+      <output message="tns:getCustomerControlPanel94Response" />
+    </operation>
+    <operation name="getCustomerControlPanelStyleList">
+      <input message="tns:getCustomerControlPanelStyleList95Request" />
+      <output message="tns:getCustomerControlPanelStyleList95Response" />
+    </operation>
+    <operation name="getCustomerControlPanelStyle">
+      <input message="tns:getCustomerControlPanelStyle96Request" />
+      <output message="tns:getCustomerControlPanelStyle96Response" />
+    </operation>
+    <operation name="removeCustomerControlPanel">
+      <input message="tns:removeCustomerControlPanel97Request" />
+      <output message="tns:removeCustomerControlPanel97Response" />
+    </operation>
+    <operation name="getEmptyDomainInstallObject">
+      <input message="tns:getEmptyDomainInstallObject98Request" />
+      <output message="tns:getEmptyDomainInstallObject98Response" />
+    </operation>
+    <operation name="getEmptyMailboxInstallObject">
+      <input message="tns:getEmptyMailboxInstallObject99Request" />
+      <output message="tns:getEmptyMailboxInstallObject99Response" />
+    </operation>
+    <operation name="getEmptyGoodLinkInstallObject">
+      <input message="tns:getEmptyGoodLinkInstallObject100Request" />
+      <output message="tns:getEmptyGoodLinkInstallObject100Response" />
+    </operation>
+    <operation name="getEmptyCustomerInstallObject">
+      <input message="tns:getEmptyCustomerInstallObject101Request" />
+      <output message="tns:getEmptyCustomerInstallObject101Response" />
+    </operation>
+    <operation name="getEmptyCustomFTPAccountInstallObject">
+      <input message="tns:getEmptyCustomFTPAccountInstallObject102Request" />
+      <output message="tns:getEmptyCustomFTPAccountInstallObject102Response" />
+    </operation>
+    <operation name="getEmptyCustomFTPAccountFolderInstallObject">
+      <input message="tns:getEmptyCustomFTPAccountFolderInstallObject103Request" />
+      <output message="tns:getEmptyCustomFTPAccountFolderInstallObject103Response" />
+    </operation>
+    <operation name="getEmptyDatabaseInstallObject">
+      <input message="tns:getEmptyDatabaseInstallObject104Request" />
+      <output message="tns:getEmptyDatabaseInstallObject104Response" />
+    </operation>
+    <operation name="getEmptyDatabaseUserInstallObject">
+      <input message="tns:getEmptyDatabaseUserInstallObject105Request" />
+      <output message="tns:getEmptyDatabaseUserInstallObject105Response" />
+    </operation>
+    <operation name="getEmptyODBCDataSourceInstallObject">
+      <input message="tns:getEmptyODBCDataSourceInstallObject106Request" />
+      <output message="tns:getEmptyODBCDataSourceInstallObject106Response" />
+    </operation>
+    <operation name="getEmptyADSLConnectionInstallObject">
+      <input message="tns:getEmptyADSLConnectionInstallObject107Request" />
+      <output message="tns:getEmptyADSLConnectionInstallObject107Response" />
+    </operation>
+    <operation name="getEmptyADSLConnectionStaticIPInstallObject">
+      <input message="tns:getEmptyADSLConnectionStaticIPInstallObject108Request" />
+      <output message="tns:getEmptyADSLConnectionStaticIPInstallObject108Response" />
+    </operation>
+    <operation name="getEmptyDialUpConnectionInstallObject">
+      <input message="tns:getEmptyDialUpConnectionInstallObject109Request" />
+      <output message="tns:getEmptyDialUpConnectionInstallObject109Response" />
+    </operation>
+    <operation name="getEmptyMatrixStatsInstallObject">
+      <input message="tns:getEmptyMatrixStatsInstallObject110Request" />
+      <output message="tns:getEmptyMatrixStatsInstallObject110Response" />
+    </operation>
+    <operation name="getEmptyCustomerControlPanelInstallObject">
+      <input message="tns:getEmptyCustomerControlPanelInstallObject111Request" />
+      <output message="tns:getEmptyCustomerControlPanelInstallObject111Response" />
+    </operation>
+    <operation name="getAccountBalance">
+      <input message="tns:getAccountBalance112Request" />
+      <output message="tns:getAccountBalance112Response" />
+    </operation>
+    <operation name="getCountryList">
+      <input message="tns:getCountryList113Request" />
+      <output message="tns:getCountryList113Response" />
+    </operation>
+    <operation name="getCountry">
+      <input message="tns:getCountry114Request" />
+      <output message="tns:getCountry114Response" />
+    </operation>
+  </portType>
+  <binding name="ISOAPServerbinding" type="tns:ISOAPServer">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <operation name="login">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#login" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="logout">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#logout" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="setTestMode">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#setTestMode" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="addDomain">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#addDomain" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="addHostingToDomain">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#addHostingToDomain" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="addRegistrationToDomain">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#addRegistrationToDomain" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getDomainOverviewListCount">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getDomainOverviewListCount" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getDomainOverviewList">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getDomainOverviewList" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getDomainListCount">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getDomainListCount" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getDomainList">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getDomainList" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getDomain">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getDomain" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getAliasDomainList">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getAliasDomainList" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="isDomainAvailable">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#isDomainAvailable" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getDomainRegistrationTermsAllowed">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getDomainRegistrationTermsAllowed" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="removeDomain">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#removeDomain" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="addMailbox">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#addMailbox" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getMailboxListCount">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getMailboxListCount" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getMailboxList">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getMailboxList" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getMailbox">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getMailbox" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="removeMailbox">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#removeMailbox" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getDefaultMailHandling">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getDefaultMailHandling" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="updateDefaultMailHandling">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#updateDefaultMailHandling" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="enableGoodLinkAccess">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#enableGoodLinkAccess" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="disableGoodLinkAccess">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#disableGoodLinkAccess" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="setMailboxPassword">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#setMailboxPassword" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="addCustomer">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#addCustomer" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getCustomerOverviewListCount">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getCustomerOverviewListCount" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getCustomerOverviewList">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getCustomerOverviewList" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getCustomerListCount">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getCustomerListCount" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getCustomerList">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getCustomerList" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getCustomer">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getCustomer" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="updateCustomer">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#updateCustomer" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="removeCustomer">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#removeCustomer" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="addCustomFTPAccount">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#addCustomFTPAccount" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="addCustomFTPAccountFolder">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#addCustomFTPAccountFolder" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getCustomFTPAccountListCount">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getCustomFTPAccountListCount" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getCustomFTPAccountList">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getCustomFTPAccountList" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getDomainFTPAccount">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getDomainFTPAccount" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getFTPAccount">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getFTPAccount" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getCustomFTPAccountFolderListCount">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getCustomFTPAccountFolderListCount" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getCustomFTPAccountFolderList">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getCustomFTPAccountFolderList" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getCustomFTPAccountFolder">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getCustomFTPAccountFolder" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getCustomFTPAccountFolderDomainList">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getCustomFTPAccountFolderDomainList" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="setFTPAccountPassword">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#setFTPAccountPassword" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="removeCustomFTPAccount">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#removeCustomFTPAccount" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="removeCustomFTPAccountFolder">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#removeCustomFTPAccountFolder" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="addDatabase">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#addDatabase" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="addDatabaseUser">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#addDatabaseUser" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getDatabaseListCount">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getDatabaseListCount" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getDatabaseList">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getDatabaseList" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getDatabaseCreationQueueListCount">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getDatabaseCreationQueueListCount" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getDatabaseCreationQueueList">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getDatabaseCreationQueueList" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="cancelDatabaseCreationRequest">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#cancelDatabaseCreationRequest" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="retryDatabaseCreationRequest">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#retryDatabaseCreationRequest" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getDatabaseDeletionQueueListCount">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getDatabaseDeletionQueueListCount" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getDatabaseDeletionQueueList">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getDatabaseDeletionQueueList" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="retryDatabaseDeletionRequest">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#retryDatabaseDeletionRequest" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getDatabase">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getDatabase" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getDatabaseUserListCount">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getDatabaseUserListCount" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getDatabaseUserList">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getDatabaseUserList" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getDatabaseUser">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getDatabaseUser" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="setDatabasePassword">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#setDatabasePassword" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="removeDatabase">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#removeDatabase" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="removeDatabaseUser">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#removeDatabaseUser" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="addODBCDataSource">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#addODBCDataSource" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getODBCDataSourceListCount">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getODBCDataSourceListCount" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getODBCDataSourceList">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getODBCDataSourceList" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getODBCDataSource">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getODBCDataSource" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="removeODBCDataSource">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#removeODBCDataSource" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="addADSLConnection">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#addADSLConnection" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getADSLConnectionListCount">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getADSLConnectionListCount" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getADSLConnectionList">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getADSLConnectionList" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getADSLConnection">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getADSLConnection" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getADSLProductsAvailable">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getADSLProductsAvailable" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getADSLConnectionStaticIPListCount">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getADSLConnectionStaticIPListCount" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getADSLConnectionStaticIPList">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getADSLConnectionStaticIPList" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="addADSLConnectionStaticIP">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#addADSLConnectionStaticIP" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="updateADSLConnection">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#updateADSLConnection" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="removeADSLConnection">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#removeADSLConnection" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="addDialUpConnection">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#addDialUpConnection" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getDialUpConnectionListCount">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getDialUpConnectionListCount" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getDialUpConnectionList">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getDialUpConnectionList" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getDialUpConnection">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getDialUpConnection" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="updateDialUpConnection">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#updateDialUpConnection" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="removeDialUpConnection">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#removeDialUpConnection" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getDomainServerOptions">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getDomainServerOptions" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="updateDomainServerOptions">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#updateDomainServerOptions" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="addMatrixStats">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#addMatrixStats" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getMatrixStats">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getMatrixStats" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="removeMatrixStats">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#removeMatrixStats" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="resetMatrixStatsUser">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#resetMatrixStatsUser" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="addCustomerControlPanel">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#addCustomerControlPanel" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getCustomerControlPanelListCount">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getCustomerControlPanelListCount" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getCustomerControlPanelList">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getCustomerControlPanelList" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getCustomerControlPanel">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getCustomerControlPanel" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getCustomerControlPanelStyleList">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getCustomerControlPanelStyleList" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getCustomerControlPanelStyle">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getCustomerControlPanelStyle" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="removeCustomerControlPanel">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#removeCustomerControlPanel" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getEmptyDomainInstallObject">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getEmptyDomainInstallObject" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getEmptyMailboxInstallObject">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getEmptyMailboxInstallObject" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getEmptyGoodLinkInstallObject">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getEmptyGoodLinkInstallObject" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getEmptyCustomerInstallObject">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getEmptyCustomerInstallObject" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getEmptyCustomFTPAccountInstallObject">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getEmptyCustomFTPAccountInstallObject" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getEmptyCustomFTPAccountFolderInstallObject">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getEmptyCustomFTPAccountFolderInstallObject" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getEmptyDatabaseInstallObject">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getEmptyDatabaseInstallObject" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getEmptyDatabaseUserInstallObject">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getEmptyDatabaseUserInstallObject" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getEmptyODBCDataSourceInstallObject">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getEmptyODBCDataSourceInstallObject" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getEmptyADSLConnectionInstallObject">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getEmptyADSLConnectionInstallObject" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getEmptyADSLConnectionStaticIPInstallObject">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getEmptyADSLConnectionStaticIPInstallObject" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getEmptyDialUpConnectionInstallObject">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getEmptyDialUpConnectionInstallObject" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getEmptyMatrixStatsInstallObject">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getEmptyMatrixStatsInstallObject" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getEmptyCustomerControlPanelInstallObject">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getEmptyCustomerControlPanelInstallObject" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getAccountBalance">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getAccountBalance" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getCountryList">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getCountryList" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+    <operation name="getCountry">
+      <soap:operation soapAction="urn:APIServerIntf-ISOAPServer#getCountry" style="rpc" />
+      <input>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </input>
+      <output>
+        <soap:body use="encoded" namespace="urn:APIServerIntf-ISOAPServer" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </output>
+    </operation>
+  </binding>
+  <service name="ISOAPServerservice">
+    <port name="ISOAPServerPort" binding="tns:ISOAPServerbinding">
+      <soap:address location="https://api.fasthosts.co.uk/v1/APIServer.exe/soap/ISOAPServer" />
+    </port>
+  </service>
+</definitions>

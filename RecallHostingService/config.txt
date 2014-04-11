@@ -1,0 +1,10 @@
+workhorsedatasource	<SQL server instance>
+workhorsedatabase	workhorse
+websitemonitordatasource	<SQL server instance>
+websitemonitordatabase	
+servermonitordatasource	<SQL server instance>
+servermonitordatabase	
+accountmonitordatasource	<SQL server instance>
+accountmonitordatabase	account
+mailenablelocation	C:\Program Files (x86)\Mail Enable
+iisipaddress	<local IIS ipaddress>
