@@ -6,19 +6,19 @@ A group of projects for setting up and running a hosting company
 This project has 5 branches
 ===========================
 
-Recall-hosting-windows-service.  
+<b>Recall-hosting-windows-service.</b><br />
 This is the service project, the service is what interfaces with the other services (e.g. Email, iis etc) to se setup accounts, host headers, DNS records etc...
 
-Example-Interface.
+<b>Example-Interface.</b><br />
 This is an example of how a web interface can be built, this will be used by customers/staff to issue commands to the windows service. The interface also stores a copy of the configuration of all email accounts/DNS records/iis headers etc.. So that they don't have to be read from the services.
 
-IIS-Proof-of-concept
+<b>IIS-Proof-of-concept.</b><br />
 This is just test code to test some concepts, so that they can be implemented into the service e.g. Creating DNS records, IIS headers etc...
 
-Account-Service
+<b>Account-Service.</b><br />
 This service monitors accounts and payments; the ideal is to alert customers/staff when accounts are overdue, and eventually issue a command to deactive an account's services when over an overdue threshold
 
-Website-Monitor
+<b>Website-Monitor.</b><br />
 This monitors a website watching for changes; initially this monitor will alert the website owner if the website has "gone down". Later this can be updated to be a version history for the website owner.
 
 
