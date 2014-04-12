@@ -1,0 +1,113 @@
+body {
+	margin: 0;
+	padding: 0;
+	background-color: #ffffff;
+	color: #686868;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+h1 {
+	margin: 0 0 1.2em;
+	padding: 3px;
+	background-color: #cccccc;
+	color: #222222;
+	font-size: 75%;
+	line-height: 1.5em;
+}
+p {
+	margin: 0 0 1.2em;
+	font-size: 75%;
+	line-height: 1.5em;
+}
+form {
+	margin: 0;
+	padding: 0 8px;
+}
+fieldset {
+	margin: 0 0 1.2em;
+	padding: 12px;
+	border: 0;
+	background-color: #f6f6f6;
+}
+legend {
+	background-color: #ffffff;
+	color: #0060b7;
+	font-size: 75%;
+	font-weight: bold;
+}
+input,
+select,
+textarea {
+	margin: 0 3px 3px;
+	font-size: 100%;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+input,
+textarea {
+	width: 12em;
+	border: 1px solid #adadad;
+}
+a {
+	background-color: #ffffff;
+	color: #555555;
+}
+a:hover,
+a:focus,
+a:active {
+	background-color: #ffffff;
+	color: #000000;
+}
+
+table {
+	width: 100%;
+	font-size: 75%;
+}
+table table {
+	font-size: 100%;
+}
+th,
+td {
+	padding: 6px 3px 3px;
+	vertical-align: top;
+}
+table.buttons th,
+table.buttons td {
+	border: 0;
+}
+th {
+	font-weight: normal;
+	text-align: left;
+}
+td label {
+	font-size: 90%;
+}
+td.right {
+	text-align: right;
+}
+input.small {
+	width: 5em;
+}
+.controls input {
+	font-weight: bold;
+	width: auto;
+	cursor: pointer;
+	background-color: #555555;
+	color: #ffffff;
+	border: 1px solid #555555;
+}
+.notices {
+	text-align: center;
+}
+.notices span {
+	clear: left;
+	float: left;
+	width: 100%;
+}
+.container {
+	padding: 0 8px;
+}
+.closewindow {
+	padding: 8px;
+	border-top: 1px solid #adadad;
+	font-size: 75%;
+}
+

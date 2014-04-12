@@ -1,0 +1,47 @@
+Imports Microsoft.VisualBasic
+
+Public Class SecurityModule
+    Implements IHttpModule
+
+    'In the Init function, register for HttpApplication 
+    'events by adding your handlers.
+    Public Sub Init(ByVal application As HttpApplication) Implements IHttpModule.Init
+        AddHandler application.BeginRequest, AddressOf Me.Application_BeginRequest
+        AddHandler application.EndRequest, AddressOf Me.Application_EndRequest
+    End Sub
+
+    'Your BeginRequest event handler.
+    Private Sub Application_BeginRequest(ByVal [source] As [Object], ByVal e As EventArgs)
+        Dim application As HttpApplication = CType([source], HttpApplication)
+        Dim context As HttpContext = application.Context
+        Dim ipAddress As String
+
+        ipAddress = context.Request.UserHostAddress
+
+        'Implement custom code to append a custom guid string to your query string
+        If Not IsValidIpAddress(ipAddress) Then
+
+            context.Response.StatusCode = 403  ' (Forbidden)
+
+        End If
+
+    End Sub
+
+    'Your EndRequest event handler.
+    Private Sub Application_EndRequest(ByVal [source] As [Object], ByVal e As EventArgs)
+        Dim application As HttpApplication = CType([source], HttpApplication)
+        Dim context As HttpContext = application.Context
+        'Implement custom code for the end request
+
+    End Sub
+
+    Private Function IsValidIpAddress(ByVal ipAddress As String) As Boolean
+
+        Return ipAddress = "212.227.52.140"
+
+    End Function
+
+    Public Sub Dispose() Implements IHttpModule.Dispose
+    End Sub
+
+End Class

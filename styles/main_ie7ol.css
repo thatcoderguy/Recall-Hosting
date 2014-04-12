@@ -1,0 +1,29 @@
+.panel .content input {
+	border: 1px solid #ffffff;
+}
+#content #wishlist input.submit {
+	border: 1px solid #f4f4f4;
+}
+#content #wishlist a.button {
+	padding: 1px 6px;
+}
+#basket_default .buttons input.submit,
+#basket_default table input.button,
+#basket_default .buttons input,
+#content div.buttons input {
+	border: 1px solid #ffffff;
+}
+#breadcrumb li,
+#basket_page_titles .basket_step {
+	padding: 0 0 0 20px;
+	background: #ffffff url("/images/bg-breadcrumb-li.gif") no-repeat 6px 50%;
+	white-space: nowrap;
+}
+#breadcrumb li.first,
+#basket_page_titles .first {
+	padding: 0;
+	background-image: none;
+}
+#breadcrumb li h1 {
+	line-height: normal;
+}
