@@ -34,18 +34,18 @@ TO DO
 
 A real web interface needs writing, with some branding features.
 
-The windows service still needs to support:
-> IIS header create/delete/update
-> DNS record create/delete/update
-> tie into a domain registrar to register domains (e.g. Using fasthosts API)
-> database create/delete
-> FTP area & accounts create/delete/update
-> SSL certificate registration
-> Setup website monitors
+The windows service still needs to support:<br />
+> IIS header create/delete/update<br />
+> DNS record create/delete/update<br />
+> Tie into a domain registrar to register domains (e.g. Using fasthosts API)<br />
+> Database create/delete<br />
+> FTP area & accounts create/delete/update<br />
+> SSL certificate registration<br />
+> Setup website monitors<br />
 
-> There is also an update class which can eventually be used for updating the service when a new version is released.
+> There is also an update class which can eventually be used for updating the service when a new version is released.<br />
 
-> Lastly, the worker class also needs to call a stored procedure that tells it how many commands are waiting to be processed, and once the count goes over a threshold, more worker threads are created.
+> Lastly, the worker class also needs to call a stored procedure that tells it how many commands are waiting to be processed, and once the count goes over a threshold, more worker threads are created.<br />
 
 The account service, and website monitor services also need writing.
 
